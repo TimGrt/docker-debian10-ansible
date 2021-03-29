@@ -4,7 +4,7 @@ Debian 10 (Buster) Docker container for Ansible playbook and role testing.
 This container is used to test Ansible roles and playbooks (e.g. with molecule) running locally inside the container.  
 A non-priviledged user `ansible` is created with password-less sudo configured.
 
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/timgrt/debian10-ansible)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/timgrt/debian10-ansible) ![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/timgrt/docker-debian10-ansible/main)
 
 ## Tags
 

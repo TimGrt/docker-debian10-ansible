@@ -3,8 +3,6 @@ LABEL maintainer="Tim Gruetzmacher"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-
-
 # Install dependencies.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -16,19 +14,19 @@ RUN apt-get update \
     && apt-get clean
 
 # Upgrade pip to latest version.
-RUN pip3 install --upgrade pip
+RUN pip3 install --no-cache-dir --upgrade pip
 
 # Install Ansible via pip.
 ENV pip_packages "ansible cryptography"
 
-RUN pip3 install $pip_packages
+RUN pip3 install --no-cache-dir $pip_packages
 
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
 
 # Install Ansible inventory file.
 RUN mkdir -p /etc/ansible
-RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
+RUN printf "[local]\nlocalhost ansible_connection=local\n" > /etc/ansible/hosts
 
 # Make sure systemd doesn't start agettys on tty[1-6].
 RUN rm -f /lib/systemd/system/multi-user.target.wants/getty.target

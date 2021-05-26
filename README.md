@@ -36,7 +36,7 @@ This image is built on Docker Hub automatically any time the upstream OS contain
   docker exec --tty [container_id] env TERM=xterm ansible --version
   ```
   ```bash
-  docker exec --tty [container_id] env TERM=xterm ansible-playbook /path/to/ansible/playbook.yml --syntax-check
+  docker exec --tty [container_id] env TERM=xterm ansible-playbook /path/to/ansible/playbook.yml
   ```
 
 ## How to Use with Molecule

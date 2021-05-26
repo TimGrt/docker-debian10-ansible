@@ -72,7 +72,7 @@ provisioner:
       pipelining: false
   inventory:
     host_vars:
-      centos7:
+      debian10:
         ansible_user: ansible
 ```
 

@@ -21,12 +21,13 @@ ENV pip_packages "ansible cryptography"
 
 RUN pip3 install --no-cache-dir $pip_packages
 
+WORKDIR /
 COPY initctl_faker .
 RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
 
 # Install Ansible inventory file.
-RUN mkdir -p /etc/ansible
-RUN printf "[local]\nlocalhost ansible_connection=local\n" > /etc/ansible/hosts
+RUN mkdir -p /etc/ansible \
+    && printf "[local]\nlocalhost ansible_connection=local\n" > /etc/ansible/hosts
 
 # Make sure systemd doesn't start agettys on tty[1-6].
 RUN rm -f /lib/systemd/system/multi-user.target.wants/getty.target
